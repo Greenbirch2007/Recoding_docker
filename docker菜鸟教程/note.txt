@@ -396,6 +396,160 @@ docker rm  3879e9cb8fbc
 
 Docker 镜像使用
 
-https://www.runoob.com/docker/docker-image-usage.html
 
+
+当容器时，使用的惊喜那个如果在本地不存在，docker就会自动从docker镜像
+仓库下载，默认是docker　hub公共镜像下载
+
+
+管理和使用本地docker主机镜像
+创建镜像
+
+
+列出镜像列表
+
+可以使用docker images 来列出本地主机上的镜像
+
+docker images
+
+参数说明
+
+repository 表示镜像的仓库源
+tag 镜像的标签
+image id :镜像id
+created  奖项创建时间
+size  镜像大小
+
+
+同一仓库源可以有多个tag,代表这个仓库源的不同版本
+
+使用repository:tag来定义不同的镜像
+
+使用15.10的ubuntu系统镜像来运行容器
+
+docker run -t -i ubuntu:15.10 /bin/bash
+
+参数说明
+
+
+-i:交互式操作
+-t:终端
+ubuntu:15.10:这是指用ubuntu 15.10版本镜像为基础来启动容器
+
+/bin/bash:放在镜像名后的是命令，
+
+如果不指定一个镜像的版本标签，docker将默认使用ubuntu:latest静ｉｘａｎｇ
+
+获取一个新的镜像
+
+可以使用docker pull来下载特定的镜像
+
+
+docker pull ubuntu:13.10
+
+
+下载完成后，可以直接使用这个镜像来运行容器
+
+
+查找镜像
+
+
+可以从docker hub来搜索镜像
+
+
+也可以使用docker search来搜索镜像．比如我们需要一个httpd
+的镜像来作为web服务．
+
+
+docker search httpd
+
+参数说明
+
+NAME 奖项仓库源的名称
+description:镜像的描述
+official:是否docker官方发布
+stars:类似github的star
+automated:自动创建爱你
+
+
+拖取精酿
+
+
+docker pull httpd
+
+删除镜像
+
+镜像删除使用docker rmi命令
+
+docker rmi hello-world
+
+创建镜像
+
+
+１．从已经创建的容器中更新镜像，并且提交这个镜像
+２．使用dockerfile指令来创建一个新的镜像
+
+
+更新镜像
+
+更新镜像之前，需要还是用镜像来创建一个容器
+
+docker run -t -i ubuntu:15.10 /bin/bash
+
+在运行的容器内还是用apt-get update来更新
+
+在完成操作后，输入exit退出容器
+
+docker commit来提交容器副本
+
+docker commit -m="has update" -a="runoob" e218edb10161 runoob/ubuntu:V2
+
+
+参数说明
+
+-m:提交的描述信息
+-a:指定镜像作者
+e218edb10161:容器ID
+runoob/ubuntu:v2  指定要创建的目标镜像名
+
+
+docker commit -m="has update" -a="runoob" 9b9cb95443b5 runoob/ubuntu:v2
+
+
+构建镜像
+
+使用命令docker build,从零开始来创建一个新的镜像．需要创建一个dockerfile文件
+其中，包含一组指令来告诉docker如何构建我们的镜像
+
+
+cat dockerfile
+
+每一个指令都会在镜像上创建一个新的层，每一个指令的前缀必须大写的
+第一条FROM,指定使用哪个镜像源
+RUN指令告诉docker在镜像内执执行命令，安装了什么
+
+然后，使用Dockerfile文件，通过docker build 命令来构建一个镜像
+
+
+docker build -t runoob/centos:6.7 .
+
+
+参数说明
+
+-t : 指定要创建的目标镜像名
+. Dockerfile文件所在的目录，可以指定Dockerfile的绝对路径
+
+
+使用docker images 查看创建的镜像已经在列表中存在，镜像ID
+
+可以使用新的镜像来创建容器
+
+
+设置镜像标签
+
+可以使用docker tag命令，为惊喜添加一个新的标签
+
+
+
+Docker 容器连接
 
