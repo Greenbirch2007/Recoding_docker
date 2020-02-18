@@ -722,3 +722,54 @@ docker run -it --rm host_ubuntu  --dns=114.114.114.114 --dns-search=test.com ubu
 
 Docker 仓库管理
 
+
+仓库(Repository)是集中存放镜像的地方，不止有docker hub,不同远程的服务商，
+操作也不同
+
+docker hub
+
+
+目前docker 官方维护了一个公共仓库docker hub
+
+大部分需求都可以通过docker hub中直接下载镜像来实现
+
+
+
+注册一个账号
+
+登录和对出
+
+
+登录需要输入用户名和密码，登录成功后，就可以从docker hub上拉取自己账号下的全部镜像
+
+
+docker login
+
+退出
+
+docker logout
+
+
+
+拉取镜像
+
+你可以通过docker search命令来差早官方仓库中的镜像，并利用docker pull来将
+它下载到本地．以ubuntu为关键词进行搜索
+
+docker pull ubuntu
+
+
+推送镜像
+
+用户登录后，可以通过docker 
+
+
+docker tag ubuntu:18.04 greenbirch/ubuntu:18.04
+$ docker image ls
+
+
+docker push  greenbirch/ubuntu:18.04
+
+Docker Dockerfile
+
+
